@@ -14,8 +14,8 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "jade": "~1.3.0",
-    "sequelize": "^1.7.9",
-    "pg": "^3.4.0"
+    "sequelize": "~1.7.9",
+    "pg": "~3.4.0"
   },
   "engines": {
     "node": "~0.8.0",
