@@ -4,11 +4,11 @@ var express      = require('express')
   , logger       = require('morgan')
   , cookieParser = require('cookie-parser')
   , bodyParser   = require('body-parser')
-  , routes       = require('../routes/index')
-  , users        = require('../routes/users')
-  , app          = express();
+  , routes       = require('../routes/index');
 
-app.set('../views', path.join(__dirname, 'views'));
+var app = express();
+
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'jade');
 
 app.use(favicon());
@@ -19,7 +19,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', routes);
-app.use('/users', users);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
