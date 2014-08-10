@@ -48,7 +48,7 @@ function bindListeners() {
 }
 
 function renderMainPage() {
-	$('#main-container').html('<form>' +
+	$('#main-container').html('<div id="home-container"><form>' +
 		'<label for="name" class="ui-hidden-accessible">Name:</label>' +
 		'<input type="text" name="name" id="name" value="" placeholder="Name"/>' +
 		'<label for="cost" class="ui-hidden-accessible">Cost:</label>' +
@@ -57,5 +57,5 @@ function renderMainPage() {
 		'<textarea name="textarea" id="description" placeholder="Description">' +
 		'</textarea>' +
 		'<button id="btn-submit">Submit</button>' +
-	'</form>').trigger('create');
+	'</form></div>').trigger('create');
 }
