@@ -1,45 +1,20 @@
 var express   = require('express')
   , router    = express.Router()
-  , db        = require('../models');
+  , item      = require('./item')
+  , user      = require('./user');
 
-/* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'MyApp' });
+  res.render('index');
 });
 
-// USER SCHEMA
-// router.get('/users', function(req,res) {
-//   res.setHeader('Content-Type', 'application/json');
-//   db.User.all().success(function(users) {
-//     res.end(JSON.stringify(users));
-//   })
-// })
-//
-// router.post('/users', function(req,res) {
-//   var params = req.body;
-//   db.User.create(params).success(function(user,created) {
-//     console.log(user.values);
-//     res.end(created);
-//   })
-// })
-
-router.get('/user/1/items', function(req,res) { // HARDCODED USER ID
-  res.setHeader('Content-Type', 'application/json');
-  db.User.findOrCreate({ username: 'rj', password: 'test'}).success(function(user, created) {
-    db.User.findAll({ include: [ db.Item ] }).success(function(users) {
-      res.end(JSON.stringify(users));
-    })
-  })
-})
-
-router.post('/user/1/items', function(req,res) {
-  db.User.find(1).success(function(user) {
-    db.Item.create(req.body).success(function(item){
-      item.setUser(user).success(function() {
-        res.end(JSON.stringify(item))
-      });
-    });
-  });
-});
+// router.post('/users/create', user.create);
+// router.get('/users/:user_id', user.read)
+// router.put('/users/:user_id', user.update);
+// router.delete('/users/:user_id', user.destroy);
+router.post('/users/:user_id/items/create', item.create);
+router.get('/users/:user_id/items', item.readAll);
+router.get('/users/:user_id/items/:item_id', item.read);
+router.put('/users/:user_id/items/:item_id', item.update);
+router.delete('/users/:user_id/items/:item_id', item.destroy);
 
 module.exports = router;
