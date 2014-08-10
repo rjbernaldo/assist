@@ -5,9 +5,7 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		classMethods: {
 			associate:function(models) {
-				Item.belongsTo(models.User, {
-					foreignKey: 'userId'
-				});
+				Item.belongsTo(models.User);
 			}
 		}
 	});

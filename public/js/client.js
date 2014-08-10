@@ -8,7 +8,19 @@ function bindListeners() {
 		renderMainPage();
 	});
 	$('#btn-history').on('click', function() {
-		$('#main-container').html('2');
+		$.ajax({
+			url: 'users/1/items',
+			type: 'GET'
+		}).done(function(response) {
+			var items = $.parseJSON(response);
+			var ul = document.createElement('ul');
+			items.forEach(function(item) {
+				var li = document.createElement('li');
+				li.innerHTML = '<span>' + item.name + '</span>: <span>' + item.cost + '</span>';
+				ul.appendChild(li);
+			})
+			$('#main-container').html(ul);
+		})
 	});
 	$('#btn-statistics').on('click', function() {
 		$('#main-container').html('3');
