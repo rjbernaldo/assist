@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	bindListeners();
 	renderMainPage();
+	bindListeners();
 });
 
 function bindListeners() {
@@ -28,13 +28,34 @@ function bindListeners() {
 	$('#btn-settings').on('click', function() {
 		$('#main-container').html('4');
 	});
+	$('#btn-submit').on('click', function(e) {
+		e.preventDefault();
+		var name = $('#name').val();
+		var cost = $('#cost').val();
+		var description = $('#description').val();
+		console.log(name, cost, description);
+		$.ajax({
+			url: 'users/1/items/create',
+			type: 'POST',
+			dataType: 'json',
+			data: {name: name, cost: cost, description: description}
+		}).done(function() {
+			$('#name').val("");
+			$('#cost').val("");
+			$('#description').val("");
+		})
+	})
 }
 
 function renderMainPage() {
-	$('#main-container').html('<div id="home-container">' +
-			'<div id="home-container_page" class="ui-field-contain ui-hide-label">' +
-				'<input id="home-input" name="home-input" type="number" class="home-input"></input>' +
-				'<a href="#popupDetails" id="home-input_button" data-rel="popup">Submit</a>' +
-			'</div>' +
-		'</div>');
+	$('#main-container').html('<form>' +
+		'<label for="name" class="ui-hidden-accessible">Name:</label>' +
+		'<input type="text" name="name" id="name" value="" placeholder="Name"/>' +
+		'<label for="cost" class="ui-hidden-accessible">Cost:</label>' +
+		'<input type="text" name="cost" id="cost" value="" placeholder="Cost"/>' +
+		'<label for="textarea-a" class="ui-hidden-accessible">Description:</label>' +
+		'<textarea name="textarea" id="description" placeholder="Description">' +
+		'</textarea>' +
+		'<button id="btn-submit">Submit</button>' +
+	'</form>').trigger('create');
 }
