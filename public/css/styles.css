@@ -2,6 +2,10 @@
 	background-color: black;
 }
 
+#nav-btn {
+	position: fixed;
+}
+
 #home-container {
 	height: 100%;
 	width: 100%;
@@ -9,4 +13,9 @@
 	-webkit-box-align:center;
 	-webkit-box-pack:center;
 	display: -webkit-box;
+}
+
+#popup-confirm {
+	color: white;
+	text-shadow: 0 0 0;
 }
