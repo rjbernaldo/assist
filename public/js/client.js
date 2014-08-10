@@ -28,27 +28,32 @@ function bindListeners() {
 	$('#btn-settings').on('click', function() {
 		$('#main-container').html('4');
 	});
-	$('#btn-submit').on('click', function(e) {
-		e.preventDefault();
+	$('#form-submit').on('submit', function() {
 		var name = $('#name').val();
 		var cost = $('#cost').val();
 		var description = $('#description').val();
-		console.log(name, cost, description);
 		$.ajax({
 			url: 'users/1/items/create',
 			type: 'POST',
 			dataType: 'json',
-			data: {name: name, cost: cost, description: description}
-		}).done(function() {
-			$('#name').val("");
-			$('#cost').val("");
-			$('#description').val("");
-		})
-	})
+			async: 'true',
+			data: {
+				name: name,
+				cost: cost,
+				description: description
+			},
+			success: function() {
+				$('#name').val("");
+				$('#cost').val("");
+				$('#description').val("");
+			}
+		});
+		return false;
+	});
 }
 
 function renderMainPage() {
-	$('#main-container').html('<div id="home-container"><form>' +
+	$('#main-container').html('<div id="home-container"><form id="form-submit">' +
 		'<label for="name" class="ui-hidden-accessible">Name:</label>' +
 		'<input type="text" name="name" id="name" value="" placeholder="Name"/>' +
 		'<label for="cost" class="ui-hidden-accessible">Cost:</label>' +
