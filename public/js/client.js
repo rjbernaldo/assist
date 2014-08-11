@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	renderMainPage();
 	bindListeners();
-	window.scrollTo(0,1);
+	bindFormListener();
+
 });
 
 function bindListeners() {
@@ -15,12 +16,14 @@ function bindListeners() {
 	]
 	$('#btn-home').on('click', function() {
 		renderMainPage();
+		bindFormListener();
 	});
 	$('#btn-history').on('click', function() {
 		$.ajax({
 			url: 'users/1/items',
 			type: 'GET'
 		}).done(function(response) {
+			window.scrollTo(0,1);
 			var items = $.parseJSON(response);
 			var ul = $('<ul id="history-list" data-autodividers="true" data-role="listview" data-filter="true"></ul>');
 			items.forEach(function(item) {
@@ -44,6 +47,9 @@ function bindListeners() {
 	$('#btn-settings').on('click', function() {
 		$('#main-container').html('4');
 	});
+}
+
+function bindFormListener() {
 	$('#btn-submit').on('click', function(e) {
 		e.preventDefault();
 		var name = $('#name').val();
