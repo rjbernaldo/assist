@@ -25,7 +25,7 @@ function bindListeners() {
 		}).done(function(response) {
 			var items = $.parseJSON(response);
 			var ul = $('<ul id="history-list" data-autodividers="true" data-role="listview" data-filter="true"></ul>');
-			items.reverse().forEach(function(item) {
+			items.forEach(function(item) {
 				var today = new Date();
 				var itemDate = new Date(item.createdAt);
 				if (itemDate.getDay() === today.getDay() && itemDate.getMonth() === today.getMonth() && itemDate.getYear() === today.getYear()) {
