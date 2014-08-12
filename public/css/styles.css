@@ -6,6 +6,10 @@
 	position: fixed;
 }
 
+#main-container {
+	padding-top: 15px;
+}
+
 #home-container {
 	height: 100%;
 	width: 100%;
