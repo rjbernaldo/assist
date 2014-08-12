@@ -7,12 +7,12 @@ $(document).ready(function() {
 
 function bindListeners() {
 	var week = [
-		'Sunday',
-		'Monday',
-		'Tuesday',
-		'Thursday',
-		'Friday',
-		'Saturday'
+	'Sunday',
+	'Monday',
+	'Tuesday',
+	'Thursday',
+	'Friday',
+	'Saturday'
 	]
 	$('#btn-home').on('click', function() {
 		renderMainPage();
@@ -68,9 +68,9 @@ function bindFormListener() {
 				},
 				success: function() {
 					$('#popup-confirm').html('<h3>New item created!</h3>' +
-																'<h4>' + name + '</h4>' +
-																'<p>' + cost + '</p>' +
-																'<p>' + description + '</p>');
+						'<h4>' + name + '</h4>' +
+						'<p>' + cost + '</p>' +
+						'<p>' + description + '</p>');
 					$('#popup-confirm').popup("open");
 					setTimeout(function() {
 						$('#popup-confirm').popup("close");
@@ -100,7 +100,7 @@ function renderMainPage() {
 		'<label for="description" class="ui-hidden-accessible">Description</label>' +
 		'<input type="text" name="description" id="description" value="" placeholder="Description"/>' +
 		'<button id="btn-submit">Submit</button>' +
-	'</form></div>' +
-	'<div id="popup-confirm" data-role="popup" data-transition="fade" data-position-to="#home-container" data-shadow="false" data-overlay-theme="a" data-theme="none">' +
-	'</div>').trigger('create');
+		'</form></div>' +
+		'<div id="popup-confirm" data-role="popup" data-transition="fade" data-position-to="#home-container" data-shadow="false" data-overlay-theme="a" data-theme="none">' +
+		'</div>').trigger('create');
 }
