@@ -37,7 +37,7 @@ function bindListeners() {
 											'<h1>$' + item.cost + '</h1>' +
 											'<p>' + item.name + '</p>' +
 											'<p>' + item.description + '</p>' +
-											'<p>' + timeSince(Date.parse(item.createdAt)) + '</p>' +
+											'<p>' + timeSince(Date.parse(item.createdAt)) + ' ago </p>' +
 									 '</li>');
 				ul.append(li);
 			})
