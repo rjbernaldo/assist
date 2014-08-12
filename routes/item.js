@@ -3,7 +3,7 @@ var db = require('../models');
 exports.create = (function() {
 	return function(req, res) {
 		db.User.find({ where: { id: req.param('user_id') }}).success(function(user) {
-				db.Item.create({name: req.param('name'), cost: req.param('cost')}).success(function(item) {
+				db.Item.create({name: req.param('name'), cost: req.param('cost'), description: req.param('description')}).success(function(item) {
 					item.setUser(user).success(function() {
 						res.end(JSON.stringify(item.values));
 					})
@@ -14,9 +14,9 @@ exports.create = (function() {
 
 exports.readAll = (function() {
 	return function(req, res) {
-		db.User.findOrCreate({username: "rj", password: "test"});
-		db.Item.findAll({ where: { UserId: req.param('user_id')}}).success(function(items) {
-			res.end(JSON.stringify(items));
+		db.User.findOrCreate({username: 'rj', password: 'test'});
+		db.Item.findAll({ where: { UserId: req.param('user_id')} }).success(function(items) {
+			res.end(JSON.stringify(items.reverse()));
 		})
 	}
 })();

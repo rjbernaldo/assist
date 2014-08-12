@@ -23,12 +23,22 @@ function bindListeners() {
 			url: 'users/1/items',
 			type: 'GET'
 		}).done(function(response) {
-			window.scrollTo(0,1);
 			var items = $.parseJSON(response);
 			var ul = $('<ul id="history-list" data-autodividers="true" data-role="listview" data-filter="true"></ul>');
-			items.forEach(function(item) {
-				var day = week[new Date(item.createdAt).getDay()];
-				var li = $('<li day=' + day + '>' + item.name + ':' + item.cost + ':' + item.description + ':' + item.createdAt + '</li>');
+			items.reverse().forEach(function(item) {
+				var today = new Date();
+				var itemDate = new Date(item.createdAt);
+				if (itemDate.getDay() === today.getDay() && itemDate.getMonth() === today.getMonth() && itemDate.getYear() === today.getYear()) {
+					day = "Today"
+				} else {
+					day = week[itemDate.getDay()];
+				}
+				var li = $('<li day=' + day + '>' +
+											'<h1>$' + item.cost + '</h1>' +
+											'<p>' + item.name + '</p>' +
+											'<p>' + item.description + '</p>' +
+											'<p>' + timeSince(Date.parse(item.createdAt)) + '</p>' +
+									 '</li>');
 				ul.append(li);
 			})
 			$('#main-container').html(ul).trigger('create');
@@ -103,4 +113,31 @@ function renderMainPage() {
 		'</form></div>' +
 		'<div id="popup-confirm" data-role="popup" data-transition="fade" data-position-to="#home-container" data-shadow="false" data-overlay-theme="a" data-theme="none">' +
 		'</div>').trigger('create');
+}
+function timeSince(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+        return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+        return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+        return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
 }
