@@ -11,7 +11,7 @@ function bindListeners() {
 	'Tuesday',
 	'Thursday',
 	'Friday',
-	'Saturday!'
+	'Saturday'
 	]
 	$('#nav-btn').on('click', function(e){
 		e.preventDefault();
