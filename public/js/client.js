@@ -2,7 +2,6 @@ $(document).ready(function() {
 	renderMainPage();
 	bindListeners();
 	bindFormListener();
-
 });
 
 function bindListeners() {
@@ -14,11 +13,17 @@ function bindListeners() {
 	'Friday',
 	'Saturday'
 	]
-	$('#btn-home').on('click', function() {
+	$('#nav-btn').on('click', function(e){
+		e.preventDefault();
+		$('#nav-btn').removeClass('ui-btn-active');
+	})
+	$('#btn-home').on('click', function(e) {
+		e.preventDefault();
 		renderMainPage();
 		bindFormListener();
 	});
-	$('#btn-history').on('click', function() {
+	$('#btn-history').on('click', function(e) {
+		e.preventDefault();
 		$.ajax({
 			url: 'users/1/items',
 			type: 'GET'
@@ -51,10 +56,12 @@ function bindListeners() {
 			}).listview('refresh');
 		})
 	});
-	$('#btn-statistics').on('click', function() {
+	$('#btn-statistics').on('click', function(e) {
+		e.preventDefault();
 		$('#main-container').html('3');
 	});
-	$('#btn-settings').on('click', function() {
+	$('#btn-settings').on('click', function(e) {
+		e.preventDefault();
 		$('#main-container').html('4');
 	});
 }
