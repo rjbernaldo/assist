@@ -6,7 +6,6 @@ Live website hosted over at Heroku: [http://mobilewallet.herokuapp.com/](http://
 
 Personal Mobile Wallet project to collect data regarding everyday spending.
 
-
 <!--
 ## Poject Milestones
 
