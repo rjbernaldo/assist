@@ -2,7 +2,7 @@
   "development": {
     "username": "rj",
     "password": "",
-    "database": "assist_dev",
+    "database": "assist_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
@@ -16,7 +16,7 @@
   "production": {
 		"username": "rj",
 		"password": "",
-    "database": "assist_prod",
+    "database": "assist_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
