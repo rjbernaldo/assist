@@ -1,6 +1,5 @@
 if (!global.hasOwnProperty('db')) {
   var Sequelize = require('sequelize')
-
     , sequelize = null;
 
   if (process.env.HEROKU_POSTGRESQL_NAVY_URL) {
